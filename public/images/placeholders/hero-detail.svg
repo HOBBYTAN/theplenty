@@ -1,0 +1,13 @@
+<svg width="900" height="900" viewBox="0 0 900 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="900" y2="900" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#E9F2EA"/>
+      <stop offset="1" stop-color="#C8D9CC"/>
+    </linearGradient>
+  </defs>
+  <rect width="900" height="900" rx="40" fill="url(#bg)"/>
+  <rect x="66" y="66" width="768" height="768" rx="28" fill="#2F4437"/>
+  <rect x="98" y="98" width="704" height="704" rx="22" stroke="#D6E4D8" stroke-width="2" stroke-dasharray="10 10"/>
+  <text x="140" y="230" fill="#EEF5EE" font-family="Georgia, serif" font-size="58">Detail Cut</text>
+  <text x="140" y="300" fill="#B8CDBD" font-family="Arial, sans-serif" font-size="28">Floral table setup, premium texture</text>
+</svg>

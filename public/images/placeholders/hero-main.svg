@@ -1,0 +1,21 @@
+<svg width="1600" height="1000" viewBox="0 0 1600 1000" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1600" y2="1000" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F5FAF5"/>
+      <stop offset="1" stop-color="#DDE9DE"/>
+    </linearGradient>
+    <linearGradient id="panel" x1="0" y1="0" x2="1100" y2="620" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#35533F"/>
+      <stop offset="1" stop-color="#24362B"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="1000" rx="42" fill="url(#bg)"/>
+  <rect x="84" y="88" width="1432" height="824" rx="34" fill="url(#panel)"/>
+  <rect x="130" y="146" width="1340" height="708" rx="24" stroke="#D6E4D8" stroke-opacity="0.65" stroke-width="2" stroke-dasharray="10 10"/>
+  <circle cx="1290" cy="238" r="180" fill="#6F8B78" fill-opacity="0.22"/>
+  <circle cx="374" cy="792" r="240" fill="#DCE9DE" fill-opacity="0.24"/>
+  <text x="170" y="240" fill="#EEF5EE" font-family="Georgia, serif" font-size="68" font-weight="600">PLENTY CONVENTION</text>
+  <text x="170" y="304" fill="#B8CDBD" font-family="Arial, sans-serif" font-size="34">Hero Visual Placeholder</text>
+  <text x="170" y="390" fill="#D7E6DA" font-family="Arial, sans-serif" font-size="28">Replace with premium interior photo of white floral wedding setup.</text>
+  <text x="170" y="436" fill="#D7E6DA" font-family="Arial, sans-serif" font-size="28">Warm daylight, cinematic depth, elegant round tables, clean symmetry.</text>
+</svg>

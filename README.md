@@ -1,36 +1,38 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## PLENTY Convention (Next.js + TypeScript + Firebase Hosting)
 
-## Getting Started
+화이트 + Plenty 그린(`#344638`) 기반의 프리미엄 컨벤션 랜딩입니다.
+우선순위는 `소개(브랜드 신뢰)`와 `블로그 연결(콘텐츠 허브)`이며, SEO/A11y/반응형 최적화를 기본 반영했습니다.
 
-First, run the development server:
+### 1) 로컬 프리뷰
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+브라우저에서 `http://localhost:3000` 접속
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 2) Firebase 연결
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. `.firebaserc`의 `your-firebase-project-id`를 실제 프로젝트 ID로 교체
+2. 필요 시 `.env.example`을 복사해 `.env.local` 생성 후 Firebase 키 입력
+3. 정적 배포 빌드
 
-## Learn More
+```bash
+npm run build
+```
 
-To learn more about Next.js, take a look at the following resources:
+`next.config.mjs`에서 `output: "export"` 설정이 되어 있어 `out/` 폴더가 생성됩니다.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 3) Firebase Hosting 배포
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+firebase deploy --only hosting
+```
 
-## Deploy on Vercel
+### 포함된 최적화
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- SEO: canonical, Open Graph, robots, sitemap, JSON-LD(LocalBusiness/EventVenue/WeddingVenue)
+- A11y: skip link, semantic structure, 포커스 스타일, 44px 이상 터치 타깃
+- Performance: 경량 레이아웃, 정적 export, Firebase 캐시 헤더
+- 확장성: TypeScript 기반 `siteConfig/spaces/blogItems` 데이터 구조, Firebase 초기화 스텁
