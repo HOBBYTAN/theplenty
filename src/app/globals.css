@@ -252,9 +252,14 @@ h1 {
 .hero-moment {
   margin: 20px 0 0;
   color: #fff;
+  font-family: var(--font-cormorant), "Cormorant Garamond", Georgia, serif;
   font-size: 1rem;
-  font-weight: 800;
+  font-weight: 600;
   line-height: 1.35;
+}
+
+.hero-moment .brand-en {
+  font: inherit;
 }
 
 .hero-lead {
@@ -306,6 +311,15 @@ h1 {
   padding: clamp(62px, 8vw, 96px) 0;
 }
 
+.venue-section-wrap {
+  background: linear-gradient(180deg, #fcfefd 0%, #f3f8f3 100%);
+  scroll-margin-top: 78px;
+}
+
+.venue-section-wrap > .venue-section + .venue-section {
+  padding-top: 0;
+}
+
 .section-soft {
   background: linear-gradient(180deg, #fcfefd 0%, #f3f8f3 100%);
   border-top: 1px solid #e8f0e9;
@@ -344,6 +358,93 @@ h1 {
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 16px;
   align-items: stretch;
+}
+
+.venue-grid {
+  margin-top: 28px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 26px;
+  align-items: start;
+}
+
+.venue-grid-wedding {
+  grid-template-columns: minmax(0, 1.65fr) minmax(0, 0.9fr) minmax(0, 0.9fr);
+}
+
+.venue-card {
+  min-width: 0;
+}
+
+.venue-image {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10.6;
+  margin: 0;
+  overflow: hidden;
+  background: #e8efe9;
+}
+
+.venue-card-wide .venue-image {
+  aspect-ratio: 19 / 8.1;
+}
+
+.venue-image img {
+  object-fit: cover;
+}
+
+.venue-content {
+  padding: 18px 0 0;
+}
+
+.venue-content h3 {
+  margin-top: 2px;
+  font-size: 1.85rem;
+  line-height: 1.1;
+}
+
+.venue-content > p:not(.space-subtitle) {
+  margin: 18px 0 0;
+  color: #18231c;
+  font-size: 1.05rem;
+  font-weight: 520;
+  line-height: 1.45;
+}
+
+.venue-content .point-list {
+  margin-top: 18px;
+}
+
+.download-row {
+  margin-top: 34px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.download-button {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #405048;
+  border-radius: 7px;
+  background: #fff;
+  color: #152018;
+  padding: 10px 22px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.download-button:hover {
+  border-color: var(--plenty-green);
+  background: var(--plenty-green);
+  color: #fff;
 }
 
 .space-card,
@@ -573,8 +674,14 @@ figcaption span {
   .space-grid,
   .blog-grid,
   .gallery-grid,
-  .contact-wrap {
+  .contact-wrap,
+  .venue-grid,
+  .venue-grid-wedding {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .venue-card-wide {
+    grid-column: 1 / -1;
   }
 
   .contact-wrap {
@@ -645,7 +752,34 @@ figcaption span {
 
   .space-grid,
   .blog-grid,
-  .gallery-grid {
+  .gallery-grid,
+  .venue-grid,
+  .venue-grid-wedding {
+    grid-template-columns: 1fr;
+  }
+
+  .venue-grid {
+    gap: 34px;
+  }
+
+  .venue-card-wide {
+    grid-column: auto;
+  }
+
+  .venue-card-wide .venue-image {
+    aspect-ratio: 16 / 10.8;
+  }
+
+  .venue-content h3 {
+    font-size: 1.55rem;
+  }
+
+  .venue-content > p:not(.space-subtitle) {
+    font-size: 1rem;
+  }
+
+  .download-row {
+    display: grid;
     grid-template-columns: 1fr;
   }
 

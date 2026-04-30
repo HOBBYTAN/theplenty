@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { blogItems, galleryItems, heroHighlights, siteConfig, spaces } from "@/lib/site";
+import { blogItems, galleryItems, heroHighlights, siteConfig, spaceSections } from "@/lib/site";
 
 const navItems = [
   { label: "공간", href: "#spaces" },
@@ -10,6 +10,7 @@ const navItems = [
 ];
 
 const telHref = (value: string) => `tel:${value.replaceAll("-", "")}`;
+const pdfName = (href: string) => href.split("/").at(-1) ?? "plenty-download.pdf";
 const renderBrandText = (text: string) =>
   text.split("PLENTY").flatMap((part, index, arr) =>
     index < arr.length - 1
@@ -124,37 +125,57 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="spaces" className="section section-soft">
-          <div className="container">
-            <div className="section-head">
-              <p className="eyebrow">SPACES</p>
-              <h2>{renderBrandText("PLENTY 공간 구성")}</h2>
-            </div>
-            <div className="space-grid">
-              {spaces.map((space) => (
-                <article key={space.title} className="space-card">
-                  <figure className="space-image">
-                    <Image
-                      src={space.image}
-                      alt={`${space.title} 이미지`}
-                      fill
-                      sizes="(max-width: 1000px) 100vw, 33vw"
-                    />
-                  </figure>
-                  <div className="space-content">
-                    <p className="space-subtitle">{space.subtitle}</p>
-                    <h3>{space.title}</h3>
-                    <p>{renderBrandText(space.description)}</p>
-                    <ul className="point-list">
-                      {space.points.map((point) => (
-                        <li key={point}>{point}</li>
-                      ))}
-                    </ul>
-                  </div>
-                </article>
-              ))}
-            </div>
-          </div>
+        <section id="spaces" className="venue-section-wrap">
+          {spaceSections.map((section) => (
+            <section key={section.id} className="section section-soft venue-section" aria-labelledby={`${section.id}-title`}>
+              <div className="container">
+                <div className="section-head">
+                  <p className="eyebrow">{section.eyebrow}</p>
+                  <h2 id={`${section.id}-title`}>{renderBrandText(section.title)}</h2>
+                </div>
+                <div className={`venue-grid venue-grid-${section.id}`}>
+                  {section.features.map((feature) => (
+                    <article key={feature.title} className={`venue-card${feature.wide ? " venue-card-wide" : ""}`}>
+                      <figure className="venue-image">
+                        <Image
+                          src={feature.image}
+                          alt={`${feature.title} 이미지`}
+                          fill
+                          sizes={feature.wide ? "(max-width: 1000px) 100vw, 50vw" : "(max-width: 1000px) 100vw, 33vw"}
+                        />
+                      </figure>
+                      <div className="venue-content">
+                        <p className="space-subtitle">{feature.subtitle}</p>
+                        <h3>{renderBrandText(feature.title)}</h3>
+                        <p>{renderBrandText(feature.description)}</p>
+                        {feature.points ? (
+                          <ul className="point-list">
+                            {feature.points.map((point) => (
+                              <li key={point}>{point}</li>
+                            ))}
+                          </ul>
+                        ) : null}
+                      </div>
+                    </article>
+                  ))}
+                </div>
+                <div className="download-row" aria-label={`${section.title} 자료 다운로드`}>
+                  {section.actions.map((action) => (
+                    <a
+                      key={action.label}
+                      className="download-button"
+                      href={action.href}
+                      target="_blank"
+                      rel="noreferrer noopener"
+                      download={pdfName(action.href)}
+                    >
+                      {action.label}
+                    </a>
+                  ))}
+                </div>
+              </div>
+            </section>
+          ))}
         </section>
 
         <section id="gallery" className="section">
