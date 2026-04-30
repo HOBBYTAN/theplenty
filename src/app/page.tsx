@@ -11,12 +11,18 @@ const navItems = [
 
 const telHref = (value: string) => `tel:${value.replaceAll("-", "")}`;
 const pdfName = (href: string) => href.split("/").at(-1) ?? "plenty-download.pdf";
-const renderBrandText = (text: string) =>
-  text.split("PLENTY").flatMap((part, index, arr) =>
-    index < arr.length - 1
-      ? [part, <span key={`plenty-${index}`} className="brand-en">PLENTY</span>]
-      : [part],
+const renderSectionTitle = (title: string) => {
+  if (!title.startsWith("PLENTY")) {
+    return title;
+  }
+
+  return (
+    <>
+      <span className="section-title-brand">PLENTY</span>
+      <span>{title.replace("PLENTY", "").trim()}</span>
+    </>
   );
+};
 
 export default function Home() {
   const jsonLd = {
@@ -101,7 +107,7 @@ export default function Home() {
             </h1>
             <p className="hero-moment">For Every <span className="brand-en">PLENTY</span> Moment</p>
             <p className="hero-lead">
-              {renderBrandText("PLENTY는 지식과 성과, 그리고 사랑이 완성되는 순간을 담아 풍요로운 시간을 나누는 품격 있는 공간입니다.")}
+              PLENTY는 지식과 성과, 그리고 사랑이 완성되는 순간을 담아 풍요로운 시간을 나누는 품격 있는 공간입니다.
             </p>
             <div className="hero-chip-row" aria-label="서비스 범위">
               {heroHighlights.map((item) => (
@@ -121,7 +127,7 @@ export default function Home() {
                 공식 블로그 보기
               </a>
             </div>
-            <p className="hero-location">{renderBrandText(siteConfig.contact.shortAddress)}</p>
+            <p className="hero-location">{siteConfig.contact.shortAddress}</p>
           </div>
         </section>
 
@@ -131,7 +137,7 @@ export default function Home() {
               <div className="container">
                 <div className="section-head">
                   <p className="eyebrow">{section.eyebrow}</p>
-                  <h2 id={`${section.id}-title`}>{renderBrandText(section.title)}</h2>
+                  <h2 id={`${section.id}-title`} className="section-title">{renderSectionTitle(section.title)}</h2>
                 </div>
                 <div className={`venue-grid venue-grid-${section.id}`}>
                   {section.features.map((feature) => (
@@ -146,8 +152,8 @@ export default function Home() {
                       </figure>
                       <div className="venue-content">
                         <p className="space-subtitle">{feature.subtitle}</p>
-                        <h3>{renderBrandText(feature.title)}</h3>
-                        <p>{renderBrandText(feature.description)}</p>
+                        <h3>{feature.title}</h3>
+                        <p>{feature.description}</p>
                         {feature.points ? (
                           <ul className="point-list">
                             {feature.points.map((point) => (
@@ -192,7 +198,7 @@ export default function Home() {
             <div className="blog-grid">
               {blogItems.map((item) => (
                 <article key={item.title} className="blog-card">
-                  <h3>{renderBrandText(item.title)}</h3>
+                  <h3>{item.title}</h3>
                   <p>{item.description}</p>
                   <a href={item.href} target="_blank" rel="noreferrer" className="blog-link">
                     자세히 보기
@@ -207,7 +213,7 @@ export default function Home() {
           <div className="container">
             <div className="section-head">
               <p className="eyebrow">LOCATION</p>
-              <h2>{renderBrandText("PLENTY CONVENTION 오시는길")}</h2>
+              <h2 className="section-title">{renderSectionTitle("PLENTY CONVENTION 오시는길")}</h2>
             </div>
             <div className="location-map">
               <iframe
