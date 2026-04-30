@@ -62,10 +62,18 @@ export const siteConfig = {
     email: "rsvn@h-kitchen.co.kr",
     address: "서울특별시 서초구 반포대로 222 가톨릭대학교 성의교정 옴니버스파크 로비층(L)",
     shortAddress: "서울 서초구 반포대로 222, 옴니버스파크 로비층, PLENTY CONVENTION",
-    mapUrl: "https://naver.me/xNoCarDx",
+    mapUrl: "https://blog.naver.com/plentyconvention/223286912598",
+    googleMapEmbed:
+      "https://www.google.com/maps?q=%EC%84%9C%EC%9A%B8%20%EC%84%9C%EC%B4%88%EA%B5%AC%20%EB%B0%98%ED%8F%AC%EB%8C%80%EB%A1%9C%20222%20%EC%98%B4%EB%8B%88%EB%B2%84%EC%8A%A4%ED%8C%8C%ED%81%AC%20%ED%94%8C%EB%A0%8C%ED%8B%B0%EC%BB%A8%EB%B2%A4%EC%85%98&output=embed",
   },
   links: {
     blog: "https://blog.naver.com/plentyconvention",
+    weddingBlog:
+      "https://blog.naver.com/PostList.naver?blogId=plentyconvention&from=postList&categoryNo=7",
+    eventBlog:
+      "https://blog.naver.com/PostList.naver?blogId=plentyconvention&from=postList&categoryNo=6",
+    infoBlog:
+      "https://blog.naver.com/PostList.naver?blogId=plentyconvention&from=postList&categoryNo=9",
     instagram: "https://www.instagram.com/plenty.convention/",
     kakao: "https://pf.kakao.com/_xfGwxob",
   },
@@ -207,16 +215,16 @@ export const blogItems: BlogItem[] = [
   {
     title: "웨딩 현장 레퍼런스",
     description: "실제 웨딩 공간 연출 사례를 확인하세요.",
-    href: siteConfig.links.blog,
+    href: siteConfig.links.weddingBlog,
   },
   {
     title: "기업행사 운영 사례",
     description: "기업 행사 진행 방식과 운영 포인트를 확인하세요.",
-    href: siteConfig.links.blog,
+    href: siteConfig.links.eventBlog,
   },
   {
-    title: "PLENTY 최신 소식",
-    description: "프로모션 및 신규 소식을 가장 빠르게 받아보세요.",
-    href: siteConfig.links.blog,
+    title: "PLENTY 정보 보기",
+    description: "PLENTY CONVENTION 관련 자료들을 확인하세요.",
+    href: siteConfig.links.infoBlog,
   },
 ];

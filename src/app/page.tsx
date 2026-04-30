@@ -1,11 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
-import { blogItems, galleryItems, heroHighlights, siteConfig, spaceSections } from "@/lib/site";
+import { blogItems, heroHighlights, siteConfig, spaceSections } from "@/lib/site";
 
 const navItems = [
   { label: "공간", href: "#spaces" },
-  { label: "갤러리", href: "#gallery" },
   { label: "블로그", href: "#blog" },
+  { label: "오시는길", href: "#location" },
   { label: "문의", href: "#contact" },
 ];
 
@@ -178,33 +178,6 @@ export default function Home() {
           ))}
         </section>
 
-        <section id="gallery" className="section">
-          <div className="container">
-            <div className="section-head">
-              <p className="eyebrow">GALLERY</p>
-              <h2>현장 갤러리</h2>
-            </div>
-            <div className="gallery-grid">
-              {galleryItems.map((item) => (
-                <figure key={item.title} className="gallery-card">
-                  <div className="gallery-image">
-                    <Image
-                      src={item.image}
-                      alt={`${item.title} 이미지`}
-                      fill
-                      sizes="(max-width: 1000px) 100vw, 33vw"
-                    />
-                  </div>
-                  <figcaption>
-                    <strong>{item.title}</strong>
-                    <span>{renderBrandText(item.caption)}</span>
-                  </figcaption>
-                </figure>
-              ))}
-            </div>
-          </div>
-        </section>
-
         <section id="blog" className="section section-soft">
           <div className="container">
             <div className="section-head section-head-row">
@@ -230,6 +203,55 @@ export default function Home() {
           </div>
         </section>
 
+        <section id="location" className="section location-section">
+          <div className="container">
+            <div className="section-head">
+              <p className="eyebrow">LOCATION</p>
+              <h2>{renderBrandText("PLENTY CONVENTION 오시는길")}</h2>
+            </div>
+            <div className="location-map">
+              <iframe
+                title="PLENTY CONVENTION Google Map"
+                src={siteConfig.contact.googleMapEmbed}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                allowFullScreen
+              />
+            </div>
+            <p className="location-address">{siteConfig.contact.address}</p>
+            <div className="location-guide">
+              <div>
+                <h3>지하철</h3>
+                <p>3, 7, 9호선 고속터미널역 4번 출구에서 도보 10분 이동</p>
+                <p>4번 출구 앞 횡단보도 건너 서울성모병원 방향 직진</p>
+              </div>
+              <div>
+                <h3>자가용</h3>
+                <p>내비게이션: PLENTY CONVENTION 또는 가톨릭대학교 옴니버스파크</p>
+                <p>서울특별시 서초구 반포대로 222 옴니버스파크</p>
+              </div>
+              <div>
+                <h3>버스</h3>
+                <p>간선(파랑): 740, 405, 540 서울지방조달청, 서울성모병원 하차</p>
+                <p>지선(녹색): 서초13, 서초14, 서초21, 5413 서울지방조달청, 서울성모병원 하차</p>
+              </div>
+              <div>
+                <h3>주차이용</h3>
+                <p>옴니버스파크 지하 4~5층 주차장 이용, 주말 최대 200대 가능</p>
+                <p>4시간 무료주차, 초과 15분당 1,000원 발생</p>
+              </div>
+            </div>
+            <a
+              className="download-button location-button"
+              href={siteConfig.contact.mapUrl}
+              target="_blank"
+              rel="noreferrer noopener"
+            >
+              약도 보기
+            </a>
+          </div>
+        </section>
+
         <section id="contact" className="section">
           <div className="container contact-wrap">
             <article>
@@ -245,8 +267,8 @@ export default function Home() {
                 >
                   문의하기
                 </a>
-                <a className="btn btn-outline" href={siteConfig.contact.mapUrl} target="_blank" rel="noreferrer">
-                  네이버 지도 보기
+                <a className="btn btn-outline" href="#location">
+                  오시는길 보기
                 </a>
               </div>
             </article>
@@ -258,6 +280,9 @@ export default function Home() {
               <a href={`mailto:${siteConfig.contact.email}`}>{siteConfig.contact.email}</a>
               <a href={siteConfig.links.kakao} target="_blank" rel="noreferrer">
                 카카오 채널 상담
+              </a>
+              <a href={siteConfig.links.instagram} target="_blank" rel="noreferrer">
+                PLENTY WEDDING Instagram
               </a>
             </div>
           </div>
