@@ -53,8 +53,8 @@ export default function Home() {
 
       <header className="top-nav">
         <div className="container nav-inner">
-          <Link href="/" className="brand" aria-label="PLENTY 홈으로 이동">
-            <Image src={siteConfig.logos.green} alt="PLENTY Convention 로고" width={124} height={124} />
+          <Link href="/" className="brand brand-text" aria-label="PLENTY CONVENTION 홈으로 이동">
+            PLENTY CONVENTION
           </Link>
           <nav aria-label="주요 메뉴" className="nav-links">
             {navItems.map((item) => (
@@ -90,11 +90,17 @@ export default function Home() {
           <div className="hero-overlay" />
 
           <div className="container hero-content">
-            <Image src={siteConfig.logos.white} alt="PLENTY Convention" width={148} height={148} priority />
+            <Image src={siteConfig.logos.white} alt="PLENTY CONVENTION" width={148} height={148} priority />
             <p className="hero-kicker">PLENTY CONVENTION</p>
-            <h1>웨딩과 기업행사를 위한 프리미엄 컨벤션</h1>
+            <h1>
+              <span className="hero-title-line">압도적인 스케일과 섬세한 운영으로 완성하는</span>
+              <span className="hero-title-line">
+                프리미엄 컨벤션홀, <span className="brand-en">PLENTY</span>
+              </span>
+            </h1>
+            <p className="hero-moment">For Every <span className="brand-en">PLENTY</span> Moment</p>
             <p className="hero-lead">
-              {renderBrandText("서울 서초 반포대로, PLENTY CONVENTION은 중요한 순간의 품격을 공간으로 완성합니다.")}
+              {renderBrandText("PLENTY는 지식과 성과, 그리고 사랑이 완성되는 순간을 담아 풍요로운 시간을 나누는 품격 있는 공간입니다.")}
             </p>
             <div className="hero-chip-row" aria-label="서비스 범위">
               {heroHighlights.map((item) => (
@@ -114,6 +120,7 @@ export default function Home() {
                 공식 블로그 보기
               </a>
             </div>
+            <p className="hero-location">{renderBrandText(siteConfig.contact.shortAddress)}</p>
           </div>
         </section>
 
@@ -238,7 +245,7 @@ export default function Home() {
 
       <footer className="site-footer">
         <div className="container footer-inner">
-          <p>{new Date().getFullYear()} © PLENTY Convention. All rights reserved.</p>
+          <p>{new Date().getFullYear()} © PLENTY CONVENTION. All rights reserved.</p>
           <div>
             <a href={siteConfig.links.instagram} target="_blank" rel="noreferrer">
               Instagram

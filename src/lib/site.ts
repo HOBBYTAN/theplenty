@@ -19,11 +19,11 @@ export type BlogItem = {
 };
 
 export const siteConfig = {
-  name: "PLENTY Convention",
+  name: "PLENTY CONVENTION",
   shortName: "PLENTY",
   domain: "https://theplenty.co.kr",
   description:
-    "서울 서초 반포대로의 프리미엄 컨벤션 공간 PLENTY Convention. 웨딩, 기업 행사, VIP 리셉션을 위한 고품격 공간 운영.",
+    "서울 서초 반포대로의 프리미엄 컨벤션홀 PLENTY CONVENTION. 웨딩, 기업 행사, 컨퍼런스를 위한 고품격 공간 운영.",
   brandColor: "#344638",
   logos: {
     green: "/brand/logo-green.webp",
@@ -39,6 +39,7 @@ export const siteConfig = {
     weddingTel: "010-6575-1598",
     email: "rsvn@h-kitchen.co.kr",
     address: "서울특별시 서초구 반포대로 222 가톨릭대학교 성의교정 옴니버스파크 로비층(L)",
+    shortAddress: "서울 서초구 반포대로 222, 옴니버스파크 로비층, PLENTY CONVENTION",
     mapUrl: "https://naver.me/xNoCarDx",
   },
   links: {
@@ -49,9 +50,9 @@ export const siteConfig = {
 };
 
 export const heroHighlights = [
-  "Wedding", 
+  "Wedding",
   "Corporate Event",
-  "Private Reception",
+  "Conference",
 ];
 
 export const spaces: Space[] = [

@@ -12,32 +12,36 @@ const cormorant = Cormorant_Garamond({
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.domain),
   title: {
-    default: "PLENTY Convention | Premium Venue in Seoul",
-    template: "%s | PLENTY Convention",
+    default: "PLENTY CONVENTION",
+    template: "%s | PLENTY CONVENTION",
   },
   description: siteConfig.description,
   alternates: {
     canonical: "/",
   },
   keywords: [
-    "PLENTY Convention",
+    "PLENTY CONVENTION",
     "서초 웨딩홀",
     "서울 컨벤션",
     "반포 연회장",
     "기업 행사 장소",
   ],
   openGraph: {
-    title: "PLENTY Convention",
+    title: "PLENTY CONVENTION",
     description: siteConfig.description,
     url: siteConfig.domain,
-    siteName: "PLENTY Convention",
+    siteName: "PLENTY CONVENTION",
     locale: "ko_KR",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "PLENTY Convention",
+    title: "PLENTY CONVENTION",
     description: siteConfig.description,
+  },
+  icons: {
+    icon: "/brand/logo-green.png",
+    apple: "/brand/logo-green.png",
   },
   robots: {
     index: true,
