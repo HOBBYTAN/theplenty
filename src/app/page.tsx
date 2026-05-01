@@ -6,7 +6,7 @@ const navItems = [
   { label: "공간", href: "#spaces" },
   { label: "블로그", href: "#blog" },
   { label: "오시는길", href: "#location" },
-  { label: "문의", href: "#contact" },
+  { label: "문의", href: "/inquiry" },
 ];
 
 const pdfName = (href: string) => href.split("/").at(-1) ?? "plenty-download.pdf";
@@ -58,9 +58,7 @@ export default function Home() {
             ))}
           </nav>
           <a
-            href={siteConfig.links.kakao}
-            target="_blank"
-            rel="noreferrer noopener"
+            href="/inquiry"
             className="cta-button"
           >
             문의하기
@@ -102,9 +100,7 @@ export default function Home() {
             <div className="hero-action-row">
               <a
                 className="btn btn-solid"
-                href={siteConfig.links.kakao}
-                target="_blank"
-                rel="noreferrer noopener"
+                href="/inquiry"
               >
                 문의하기
               </a>
@@ -252,9 +248,7 @@ export default function Home() {
               <div className="hero-action-row">
                 <a
                   className="btn btn-solid"
-                  href={siteConfig.links.kakao}
-                  target="_blank"
-                  rel="noreferrer noopener"
+                  href="/inquiry"
                 >
                   문의하기
                 </a>
