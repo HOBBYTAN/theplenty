@@ -9,20 +9,7 @@ const navItems = [
   { label: "문의", href: "#contact" },
 ];
 
-const telHref = (value: string) => `tel:${value.replaceAll("-", "")}`;
 const pdfName = (href: string) => href.split("/").at(-1) ?? "plenty-download.pdf";
-const renderSectionTitle = (title: string) => {
-  if (!title.startsWith("PLENTY")) {
-    return title;
-  }
-
-  return (
-    <>
-      <span className="section-title-brand">PLENTY</span>
-      <span>{title.replace("PLENTY", "").trim()}</span>
-    </>
-  );
-};
 
 export default function Home() {
   const jsonLd = {
@@ -101,11 +88,9 @@ export default function Home() {
             <p className="hero-kicker">PLENTY CONVENTION</p>
             <h1>
               <span className="hero-title-line">압도적인 스케일과 섬세한 운영으로 완성하는</span>
-              <span className="hero-title-line">
-                프리미엄 컨벤션홀, <span className="brand-en">PLENTY</span>
-              </span>
+              <span className="hero-title-line">프리미엄 컨벤션홀, PLENTY</span>
             </h1>
-            <p className="hero-moment">For Every <span className="brand-en">PLENTY</span> Moment</p>
+            <p className="hero-moment">For Every PLENTY Moment</p>
             <p className="hero-lead">
               PLENTY는 지식과 성과, 그리고 사랑이 완성되는 순간을 담아 풍요로운 시간을 나누는 품격 있는 공간입니다.
             </p>
@@ -137,7 +122,7 @@ export default function Home() {
               <div className="container">
                 <div className="section-head">
                   <p className="eyebrow">{section.eyebrow}</p>
-                  <h2 id={`${section.id}-title`} className="section-title">{renderSectionTitle(section.title)}</h2>
+                  <h2 id={`${section.id}-title`}>{section.title}</h2>
                 </div>
                 <div className={`venue-grid venue-grid-${section.id}`}>
                   {section.features.map((feature) => (
@@ -213,7 +198,7 @@ export default function Home() {
           <div className="container">
             <div className="section-head">
               <p className="eyebrow">LOCATION</p>
-              <h2 className="section-title">{renderSectionTitle("PLENTY CONVENTION 오시는길")}</h2>
+              <h2>PLENTY CONVENTION 오시는길</h2>
             </div>
             <div className="location-map">
               <iframe
@@ -280,9 +265,9 @@ export default function Home() {
             </article>
 
             <div className="contact-list" aria-label="연락처 정보">
-              <a href={telHref(siteConfig.contact.mainTel)}>대표번호 {siteConfig.contact.mainTel}</a>
-              <a href={telHref(siteConfig.contact.corporateTel)}>연회·기업 {siteConfig.contact.corporateTel}</a>
-              <a href={telHref(siteConfig.contact.weddingTel)}>웨딩 {siteConfig.contact.weddingTel}</a>
+              <span>대표번호 {siteConfig.contact.mainTel}</span>
+              <span>연회·기업 {siteConfig.contact.corporateTel}</span>
+              <span>웨딩 {siteConfig.contact.weddingTel}</span>
               <a href={`mailto:${siteConfig.contact.email}`}>{siteConfig.contact.email}</a>
               <a href={siteConfig.links.kakao} target="_blank" rel="noreferrer">
                 카카오 채널 상담
