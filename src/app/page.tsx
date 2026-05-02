@@ -1,12 +1,28 @@
 import Image from "next/image";
 import Link from "next/link";
-import { blogItems, heroHighlights, siteConfig, spaceSections } from "@/lib/site";
+import { blogItems, siteConfig, spaceSections } from "@/lib/site";
 
 const navItems = [
+  { label: "소개", href: "#about" },
   { label: "공간", href: "#spaces" },
   { label: "블로그", href: "#blog" },
   { label: "오시는길", href: "#location" },
   { label: "문의", href: "/inquiry" },
+];
+
+const aboutCards = [
+  {
+    title: "Wedding",
+    description: "입장부터 리셉션까지 하나의 흐름으로 완성하는 프리미엄 웨딩",
+  },
+  {
+    title: "Corporate Event",
+    description: "브랜드 발표, 세미나, VIP 세션을 안정적으로 운영하는 기업행사",
+  },
+  {
+    title: "Conference",
+    description: "대형 미디어월과 유연한 좌석 구성으로 몰입을 높이는 컨퍼런스",
+  },
 ];
 
 const pdfName = (href: string) => href.split("/").at(-1) ?? "plenty-download.pdf";
@@ -88,15 +104,9 @@ export default function Home() {
               <span className="hero-title-line">압도적인 스케일과 섬세한 운영으로 완성하는</span>
               <span className="hero-title-line">프리미엄 컨벤션홀, PLENTY</span>
             </h1>
-            <p className="hero-moment">For Every PLENTY Moment</p>
             <p className="hero-lead">
-              PLENTY는 지식과 성과, 그리고 사랑이 완성되는 순간을 담아 풍요로운 시간을 나누는 품격 있는 공간입니다.
+              서울 서초 반포대로, 중요한 순간의 품격을 공간과 운영으로 완성합니다.
             </p>
-            <div className="hero-chip-row" aria-label="서비스 범위">
-              {heroHighlights.map((item) => (
-                <span key={item}>{item}</span>
-              ))}
-            </div>
             <div className="hero-action-row">
               <a
                 className="btn btn-solid"
@@ -109,6 +119,29 @@ export default function Home() {
               </a>
             </div>
             <p className="hero-location">{siteConfig.contact.shortAddress}</p>
+          </div>
+        </section>
+
+        <section id="about" className="section about-section">
+          <div className="container about-grid">
+            <article className="about-copy">
+              <p className="eyebrow">ABOUT PLENTY</p>
+              <p className="about-moment">For Every PLENTY Moment</p>
+              <h2>성과와 사랑이 머무는 시간을 위한 프리미엄 컨벤션</h2>
+              <p>
+                PLENTY는 지식과 성과, 그리고 사랑이 완성되는 순간을 담아 풍요로운 시간을 나누는 품격 있는 공간입니다.
+                서울 서초의 중심에서 웨딩, 기업행사, 컨퍼런스를 목적에 맞게 설계하고 안정적으로 운영합니다.
+              </p>
+            </article>
+            <div className="about-card-grid" aria-label="PLENTY 주요 이용 목적">
+              {aboutCards.map((card, index) => (
+                <article key={card.title} className="about-card">
+                  <span>{String(index + 1).padStart(2, "0")}</span>
+                  <h3>{card.title}</h3>
+                  <p>{card.description}</p>
+                </article>
+              ))}
+            </div>
           </div>
         </section>
 
