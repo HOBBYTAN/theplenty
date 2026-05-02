@@ -232,10 +232,10 @@ button:focus-visible {
 }
 
 .hero-video-section {
+  --hero-height: min(860px, calc(100svh - 70px));
   position: relative;
-  min-height: min(820px, calc(100svh - 70px));
-  display: flex;
-  align-items: center;
+  min-height: var(--hero-height);
+  display: block;
   overflow: hidden;
   background: var(--plenty-green-deep);
 }
@@ -260,18 +260,29 @@ button:focus-visible {
 .hero-content {
   position: relative;
   z-index: 2;
+  min-height: var(--hero-height);
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  align-items: start;
   color: #fff;
-  padding: clamp(36px, 5vw, 66px) 0;
+  padding: clamp(26px, 4.2svh, 48px) 0 clamp(44px, 6.8svh, 76px);
 }
 
-.hero-content > img {
-  width: clamp(92px, 8vw, 124px);
+.hero-brand-mark {
+  width: clamp(86px, 7vw, 112px);
   height: auto;
+  transform: translateY(-6px);
   filter: drop-shadow(0 16px 28px rgba(0, 0, 0, 0.25));
 }
 
+.hero-copy {
+  align-self: center;
+  max-width: 1060px;
+  padding: clamp(20px, 4.4svh, 54px) 0 clamp(18px, 3.8svh, 44px);
+}
+
 .hero-kicker {
-  margin: 22px 0 0;
+  margin: 0;
   font-family: var(--font-cormorant), "Cormorant Garamond", Georgia, serif;
   font-size: clamp(0.92rem, 1.2vw, 1.15rem);
   font-weight: 600;
@@ -289,7 +300,7 @@ h3 {
 }
 
 h1 {
-  margin-top: 16px;
+  margin-top: clamp(18px, 2.6svh, 28px);
   max-width: 980px;
   font-size: clamp(2.3rem, 4.15vw, 4.18rem);
   font-weight: 600;
@@ -314,7 +325,7 @@ h1 {
 }
 
 .hero-lead {
-  margin-top: 12px;
+  margin-top: clamp(16px, 2.6svh, 26px);
   max-width: 720px;
   color: rgba(255, 255, 255, 0.88);
   font-size: clamp(0.95rem, 1.05vw, 1.06rem);
@@ -346,14 +357,19 @@ h1 {
 }
 
 .hero-action-row {
-  margin-top: 20px;
+  margin-top: 0;
   display: flex;
   gap: 12px;
   flex-wrap: wrap;
 }
 
+.hero-bottom {
+  display: grid;
+  gap: clamp(18px, 2.8svh, 28px);
+}
+
 .hero-location {
-  margin: 18px 0 0;
+  margin: 0;
   color: rgba(255, 255, 255, 0.88);
   font-size: 0.88rem;
   font-weight: 400;
@@ -1156,19 +1172,24 @@ h1 {
   }
 
   .hero-video-section {
-    min-height: min(720px, calc(100svh - 64px));
+    --hero-height: min(760px, calc(100svh - 64px));
+    min-height: var(--hero-height);
   }
 
   .hero-content {
-    padding: 48px 0 28px;
+    padding: 28px 0 30px;
   }
 
-  .hero-content > img {
-    width: 88px;
+  .hero-brand-mark {
+    width: 78px;
+    transform: translateY(-4px);
+  }
+
+  .hero-copy {
+    padding: 28px 0 24px;
   }
 
   .hero-kicker {
-    margin-top: 18px;
     font-size: 0.78rem;
     letter-spacing: 0.14em;
   }
@@ -1208,7 +1229,7 @@ h1 {
   }
 
   .hero-action-row {
-    margin-top: 18px;
+    margin-top: 0;
   }
 
   .hero-chip-row span {

@@ -98,27 +98,38 @@ export default function Home() {
           <div className="hero-overlay" />
 
           <div className="container hero-content">
-            <Image src={siteConfig.logos.white} alt="PLENTY CONVENTION" width={148} height={148} priority />
-            <p className="hero-kicker">PLENTY CONVENTION</p>
-            <h1>
-              <span className="hero-title-line">압도적인 스케일과 섬세한 운영으로 완성하는</span>
-              <span className="hero-title-line">프리미엄 컨벤션홀, PLENTY</span>
-            </h1>
-            <p className="hero-lead">
-              서울 서초 반포대로, 중요한 순간의 품격을 공간과 운영으로 완성합니다.
-            </p>
-            <div className="hero-action-row">
-              <a
-                className="btn btn-solid"
-                href="/inquiry"
-              >
-                문의하기
-              </a>
-              <a className="btn btn-outline-light" href={siteConfig.links.blog} target="_blank" rel="noreferrer">
-                공식 블로그 보기
-              </a>
+            <Image
+              className="hero-brand-mark"
+              src={siteConfig.logos.white}
+              alt="PLENTY CONVENTION"
+              width={148}
+              height={148}
+              priority
+            />
+            <div className="hero-copy">
+              <p className="hero-kicker">PLENTY CONVENTION</p>
+              <h1>
+                <span className="hero-title-line">압도적인 스케일과 섬세한 운영으로 완성하는</span>
+                <span className="hero-title-line">프리미엄 컨벤션홀, PLENTY</span>
+              </h1>
+              <p className="hero-lead">
+                서울 서초 반포대로, 중요한 순간의 품격을 공간과 운영으로 완성합니다.
+              </p>
             </div>
-            <p className="hero-location">{siteConfig.contact.shortAddress}</p>
+            <div className="hero-bottom">
+              <div className="hero-action-row">
+                <a
+                  className="btn btn-solid"
+                  href="/inquiry"
+                >
+                  문의하기
+                </a>
+                <a className="btn btn-outline-light" href={siteConfig.links.blog} target="_blank" rel="noreferrer">
+                  공식 블로그 보기
+                </a>
+              </div>
+              <p className="hero-location">{siteConfig.contact.shortAddress}</p>
+            </div>
           </div>
         </section>
 
