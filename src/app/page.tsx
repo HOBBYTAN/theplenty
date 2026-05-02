@@ -26,6 +26,7 @@ const aboutCards = [
 ];
 
 const pdfName = (href: string) => href.split("/").at(-1) ?? "plenty-download.pdf";
+const isPdfDownload = (href: string) => href.startsWith("/downloads/") && href.endsWith(".pdf");
 
 export default function Home() {
   const jsonLd = {
@@ -198,7 +199,7 @@ export default function Home() {
                       href={action.href}
                       target="_blank"
                       rel="noreferrer noopener"
-                      download={pdfName(action.href)}
+                      {...(isPdfDownload(action.href) ? { download: pdfName(action.href) } : {})}
                     >
                       {action.label}
                     </a>
