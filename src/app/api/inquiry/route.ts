@@ -33,6 +33,8 @@ type NormalizedInquiry = {
 
 const eventTypes = new Set(["식사", "식사+미팅", "미팅", "기타"]);
 const inquiryToEmail = process.env.INQUIRY_TO_EMAIL || "rsvn@h-kitchen.co.kr";
+const plentyAddress = "서울 서초구 반포대로 222, 옴니버스파크 로비층, PLENTY CONVENTION";
+const plentyPhone = "02-3477-8884";
 
 function clean(value: unknown, maxLength = 1000) {
   return String(value ?? "").trim().slice(0, maxLength);
@@ -132,6 +134,92 @@ function buildMailContent(inquiry: NormalizedInquiry) {
   return { text, html };
 }
 
+function buildCustomerReplyContent(inquiry: NormalizedInquiry) {
+  const eventDate = inquiry.dateUndecided ? "일정미정" : inquiry.eventDate;
+  const rows = [
+    ["행사명", inquiry.eventName],
+    ["예상 행사일자", eventDate],
+    ["인원(규모)", inquiry.guests],
+    ["행사형태", inquiry.eventType],
+  ];
+
+  const text = [
+    `안녕하세요, ${inquiry.name} 고객님.`,
+    "품격 있는 웨딩·컨벤션홀 PLENTY입니다.",
+    "",
+    "문의를 남겨주셔서 감사합니다.",
+    "담당자가 접수 내용을 확인한 뒤 빠른 시일 내 답변드리겠습니다.",
+    "",
+    "접수 내용",
+    ...rows.map(([label, value]) => `${label}: ${value}`),
+    "",
+    `PLENTY CONVENTION`,
+    `대표번호 ${plentyPhone}`,
+    plentyAddress,
+  ].join("\n");
+
+  const htmlRows = rows
+    .map(
+      ([label, value]) => `
+        <tr>
+          <th style="width:132px;padding:13px 0;color:#617a67;font-size:13px;font-weight:700;text-align:left;border-bottom:1px solid #e4ece5;">${escapeHtml(label)}</th>
+          <td style="padding:13px 0;color:#18241d;font-size:14px;font-weight:600;text-align:right;border-bottom:1px solid #e4ece5;">${escapeHtml(value)}</td>
+        </tr>`,
+    )
+    .join("");
+
+  const html = `
+    <div style="margin:0;padding:0;background:#f5f8f4;">
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse;background:#f5f8f4;">
+        <tr>
+          <td align="center" style="padding:36px 16px;">
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="width:100%;max-width:640px;border-collapse:collapse;background:#ffffff;border:1px solid #dce7df;border-radius:28px;overflow:hidden;box-shadow:0 18px 46px rgba(20,35,26,0.10);">
+              <tr>
+                <td style="padding:34px 34px 28px;background:linear-gradient(135deg,#14231a 0%,#314437 100%);color:#ffffff;">
+                  <p style="margin:0 0 58px;color:rgba(255,255,255,0.80);font-family:Georgia,'Times New Roman',serif;font-size:22px;font-weight:600;letter-spacing:0.08em;">PLENTY</p>
+                  <p style="margin:0;color:rgba(255,255,255,0.70);font-size:12px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;">Inquiry Received</p>
+                  <h1 style="margin:12px 0 0;color:#ffffff;font-family:Georgia,'Times New Roman','Apple SD Gothic Neo','Malgun Gothic',serif;font-size:34px;line-height:1.24;font-weight:600;letter-spacing:-0.03em;">문의를 남겨주셔서 감사합니다.</h1>
+                </td>
+              </tr>
+              <tr>
+                <td style="padding:34px;">
+                  <p style="margin:0;color:#18241d;font-size:18px;line-height:1.7;font-weight:700;">안녕하세요, ${escapeHtml(inquiry.name)} 고객님.</p>
+                  <p style="margin:14px 0 0;color:#34443a;font-size:16px;line-height:1.78;">
+                    품격 있는 웨딩·컨벤션홀 <strong style="color:#314437;">PLENTY</strong>입니다.<br />
+                    문의를 남겨주셔서 감사합니다. 담당자가 접수 내용을 확인한 뒤 빠른 시일 내 답변드리겠습니다.
+                  </p>
+
+                  <div style="margin:28px 0 0;padding:22px 24px;border:1px solid #dce7df;border-radius:22px;background:#fbfdfb;">
+                    <p style="margin:0 0 8px;color:#617a67;font-size:12px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;">Request Summary</p>
+                    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse;width:100%;">
+                      ${htmlRows}
+                    </table>
+                  </div>
+
+                  <p style="margin:26px 0 0;color:#5c6a61;font-size:14px;line-height:1.72;">
+                    빠른 확인이 필요한 경우 대표번호 또는 카카오 채널을 통해 문의해주세요.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td style="padding:24px 34px 32px;background:#fbfaf5;border-top:1px solid #e8efe9;">
+                  <p style="margin:0;color:#14231a;font-family:Georgia,'Times New Roman',serif;font-size:18px;font-weight:600;letter-spacing:0.08em;">PLENTY CONVENTION</p>
+                  <p style="margin:10px 0 0;color:#526159;font-size:13px;line-height:1.7;">
+                    대표번호 ${plentyPhone}<br />
+                    ${escapeHtml(plentyAddress)}<br />
+                    ${escapeHtml(inquiryToEmail)}
+                  </p>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </div>`;
+
+  return { text, html };
+}
+
 export async function POST(request: Request) {
   try {
     const payload = (await request.json()) as InquiryPayload;
@@ -162,22 +250,34 @@ export async function POST(request: Request) {
       },
     });
 
-    const { text, html } = buildMailContent(normalized.inquiry);
+    const adminMail = buildMailContent(normalized.inquiry);
+    const customerMail = buildCustomerReplyContent(normalized.inquiry);
+    const from = {
+      name: process.env.SMTP_FROM_NAME || "PLENTY CONVENTION 문의",
+      address: process.env.SMTP_FROM || smtpUser,
+    };
 
-    await transporter.sendMail({
-      from: {
-        name: process.env.SMTP_FROM_NAME || "PLENTY CONVENTION 문의",
-        address: process.env.SMTP_FROM || smtpUser,
-      },
-      to: inquiryToEmail,
-      replyTo: {
-        name: normalized.inquiry.name,
-        address: normalized.inquiry.email,
-      },
-      subject: `[PLENTY 기업문의] ${normalized.inquiry.company} / ${normalized.inquiry.eventName}`,
-      text,
-      html,
-    });
+    await Promise.all([
+      transporter.sendMail({
+        from,
+        to: inquiryToEmail,
+        replyTo: {
+          name: normalized.inquiry.name,
+          address: normalized.inquiry.email,
+        },
+        subject: `[PLENTY 기업문의] ${normalized.inquiry.company} / ${normalized.inquiry.eventName}`,
+        text: adminMail.text,
+        html: adminMail.html,
+      }),
+      transporter.sendMail({
+        from,
+        to: normalized.inquiry.email,
+        replyTo: inquiryToEmail,
+        subject: "[PLENTY] 문의를 남겨주셔서 감사합니다.",
+        text: customerMail.text,
+        html: customerMail.html,
+      }),
+    ]);
 
     return NextResponse.json({ message: "문의가 정상적으로 발송되었습니다." });
   } catch (error) {
