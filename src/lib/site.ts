@@ -75,6 +75,7 @@ export const siteConfig = {
     infoBlog:
       "https://blog.naver.com/PostList.naver?blogId=plentyconvention&from=postList&categoryNo=9",
     estimateGuide: "https://blog.naver.com/plentyconvention/224254339503",
+    weddingEstimateGuide: "https://blog.naver.com/plentyconvention/224171605493",
     instagram: "https://www.instagram.com/plenty.convention/",
     kakao: "https://pf.kakao.com/_xfGwxob",
   },
@@ -155,7 +156,7 @@ export const spaceSections: SpaceSection[] = [
     ],
     actions: [
       { label: "웨딩 로비도면", href: downloadLinks.weddingLobbyPlan },
-      { label: "기본 견적 확인", href: siteConfig.links.estimateGuide },
+      { label: "기본 견적 확인", href: siteConfig.links.weddingEstimateGuide },
     ],
   },
 ];
