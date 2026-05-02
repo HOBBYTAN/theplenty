@@ -284,13 +284,13 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="contact" className="section">
+        <section id="contact" className="section contact-section">
           <div className="container contact-wrap">
-            <article>
+            <article className="contact-panel">
               <p className="eyebrow">CONTACT</p>
               <h2>예약 및 문의</h2>
               <p className="contact-copy">{siteConfig.contact.address}</p>
-              <div className="hero-action-row">
+              <div className="contact-action-row">
                 <a
                   className="btn btn-solid"
                   href="/inquiry"

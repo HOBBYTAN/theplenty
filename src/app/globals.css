@@ -755,8 +755,7 @@ h1 {
   line-height: 1.25;
 }
 
-.blog-card p,
-.contact-copy {
+.blog-card p {
   margin: 10px 0 0;
   color: var(--muted);
   font-size: 0.98rem;
@@ -840,30 +839,74 @@ h1 {
   margin-top: 28px;
 }
 
+.contact-section {
+  background:
+    radial-gradient(circle at 12% 20%, rgba(97, 122, 103, 0.08), transparent 28%),
+    linear-gradient(180deg, #fff 0%, #f7faf7 100%);
+}
+
 .contact-wrap {
   display: grid;
-  grid-template-columns: 1.05fr 0.95fr;
-  gap: 28px;
+  grid-template-columns: minmax(0, 0.92fr) minmax(420px, 0.98fr);
+  gap: clamp(48px, 7vw, 96px);
   align-items: center;
 }
 
+.contact-panel {
+  max-width: 650px;
+}
+
+.contact-panel h2 {
+  margin-top: 14px;
+  color: var(--ink);
+  font-size: clamp(2.05rem, 3.6vw, 3.65rem);
+  font-weight: 600;
+  line-height: 1.12;
+  letter-spacing: -0.055em;
+}
+
+.contact-copy {
+  margin: 28px 0 0;
+  max-width: 620px;
+  color: #526159;
+  font-size: clamp(1rem, 1.15vw, 1.1rem);
+  font-weight: 400;
+  line-height: 1.82;
+  letter-spacing: -0.02em;
+}
+
+.contact-action-row {
+  margin-top: 34px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.contact-action-row .btn {
+  min-height: 52px;
+  padding: 13px 24px;
+}
+
 .contact-list {
+  width: min(100%, 560px);
+  justify-self: end;
   display: grid;
-  gap: 10px;
+  gap: 14px;
 }
 
 .contact-list a,
 .contact-list span {
-  min-height: 50px;
+  min-height: 58px;
   display: flex;
   align-items: center;
   border: 1px solid rgba(197, 212, 202, 0.9);
-  border-radius: 16px;
-  padding: 13px 16px;
-  background: rgba(255, 255, 255, 0.86);
+  border-radius: 18px;
+  padding: 15px 18px;
+  background: rgba(255, 255, 255, 0.9);
   color: #33453a;
   font-weight: 600;
   letter-spacing: -0.015em;
+  box-shadow: 0 12px 28px rgba(20, 35, 26, 0.045);
   transition:
     transform 0.2s ease,
     border-color 0.2s ease,
@@ -1133,6 +1176,12 @@ h1 {
 
   .contact-wrap {
     grid-template-columns: 1fr;
+    gap: 34px;
+  }
+
+  .contact-list {
+    width: 100%;
+    justify-self: stretch;
   }
 
   .about-grid {
@@ -1364,6 +1413,10 @@ h1 {
   }
 
   .hero-action-row .btn {
+    width: 100%;
+  }
+
+  .contact-action-row .btn {
     width: 100%;
   }
 }
