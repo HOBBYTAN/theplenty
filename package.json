@@ -10,17 +10,18 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "serve:out": "npx serve out -l 4173",
-    "firebase:deploy": "npm run build && firebase deploy --only hosting"
+    "preview": "npm run build && npm start"
   },
   "dependencies": {
     "firebase": "^12.10.0",
     "next": "14.2.33",
+    "nodemailer": "^8.0.7",
     "react": "18.3.1",
     "react-dom": "18.3.1"
   },
   "devDependencies": {
     "@types/node": "^20",
+    "@types/nodemailer": "^8.0.0",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "eslint": "^8.57.0",

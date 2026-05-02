@@ -14,6 +14,7 @@ type FormState = {
   guests: string;
   eventType: string;
   message: string;
+  website: string;
 };
 
 const initialState: FormState = {
@@ -27,10 +28,15 @@ const initialState: FormState = {
   guests: "",
   eventType: "식사",
   message: "",
+  website: "",
 };
+
+type SubmitStatus = "idle" | "sending" | "success" | "error";
 
 export default function InquiryForm() {
   const [form, setForm] = useState<FormState>(initialState);
+  const [submitStatus, setSubmitStatus] = useState<SubmitStatus>("idle");
+  const [statusMessage, setStatusMessage] = useState("");
 
   const canSubmit = useMemo(
     () =>
@@ -49,31 +55,49 @@ export default function InquiryForm() {
     setForm((prev) => ({ ...prev, [key]: value }));
   };
 
-  const submit = (event: FormEvent<HTMLFormElement>) => {
+  const submit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const subject = `[PLENTY 기업문의] ${form.company || "회사명 미입력"} / ${form.eventName || "행사명 미입력"}`;
-    const body = [
-      "PLENTY CONVENTION 기업문의",
-      "",
-      `성명: ${form.name}`,
-      `이메일: ${form.email}`,
-      `휴대전화: ${form.phone}`,
-      `회사명: ${form.company}`,
-      `행사명: ${form.eventName}`,
-      `예상행사일자: ${form.dateUndecided ? "일정미정" : form.eventDate}`,
-      `인원(규모): ${form.guests}`,
-      `행사형태: ${form.eventType}`,
-      "",
-      "기타문의사항:",
-      form.message || "-",
-    ].join("\n");
+    if (!canSubmit || submitStatus === "sending") {
+      return;
+    }
 
-    window.location.href = `mailto:${siteConfig.contact.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    setSubmitStatus("sending");
+    setStatusMessage("");
+
+    try {
+      const response = await fetch(process.env.NEXT_PUBLIC_INQUIRY_ENDPOINT || "/api/inquiry/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(form),
+      });
+      const result = (await response.json().catch(() => null)) as { message?: string } | null;
+
+      if (!response.ok) {
+        throw new Error(result?.message || "문의 발송에 실패했습니다.");
+      }
+
+      setForm(initialState);
+      setSubmitStatus("success");
+      setStatusMessage(result?.message || "문의가 정상적으로 발송되었습니다.");
+    } catch (error) {
+      setSubmitStatus("error");
+      setStatusMessage(error instanceof Error ? error.message : "문의 발송에 실패했습니다.");
+    }
   };
 
   return (
     <form className="inquiry-form" onSubmit={submit}>
+      <input
+        className="form-honeypot"
+        tabIndex={-1}
+        autoComplete="off"
+        value={form.website}
+        onChange={(event) => update("website", event.target.value)}
+        aria-hidden="true"
+      />
       <div className="form-row">
         <label htmlFor="name">*성명</label>
         <input id="name" required value={form.name} onChange={(event) => update("name", event.target.value)} />
@@ -166,11 +190,16 @@ export default function InquiryForm() {
       </div>
       <p className="required-note">* 필수입력사항입니다.</p>
       <div className="form-submit-row">
-        <button className="btn btn-solid" type="submit" disabled={!canSubmit}>
-          작성 완료 후 메일 보내기
+        <button className="btn btn-solid" type="submit" disabled={!canSubmit || submitStatus === "sending"}>
+          {submitStatus === "sending" ? "메일 발송 중" : "작성 완료 후 메일 보내기"}
         </button>
         <p>작성 완료 시 {siteConfig.contact.email} 메일로 발송됩니다.</p>
       </div>
+      {statusMessage ? (
+        <p className={`form-status form-status-${submitStatus}`} role="status">
+          {statusMessage}
+        </p>
+      ) : null}
     </form>
   );
 }

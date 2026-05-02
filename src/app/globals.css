@@ -851,6 +851,15 @@ h1 {
   box-shadow: var(--shadow-card);
 }
 
+.form-honeypot {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
 .form-row {
   display: grid;
   grid-template-columns: 190px minmax(0, 1fr);
@@ -940,6 +949,24 @@ h1 {
   opacity: 0.52;
   cursor: not-allowed;
   transform: none;
+}
+
+.form-status {
+  margin: 0 18px 22px;
+  padding: 13px 16px;
+  border-radius: 16px;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.form-status-success {
+  background: rgba(52, 70, 56, 0.08);
+  color: var(--plenty-green);
+}
+
+.form-status-error {
+  background: rgba(140, 52, 42, 0.08);
+  color: #8c342a;
 }
 
 @media (max-width: 1080px) {
