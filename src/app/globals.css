@@ -1001,6 +1001,13 @@ h1 {
   box-shadow: 0 24px 42px rgba(20, 35, 26, 0.14);
 }
 
+.request-choice-card-active {
+  border-color: rgba(20, 35, 26, 0.42);
+  box-shadow:
+    0 0 0 4px rgba(97, 122, 103, 0.12),
+    0 24px 42px rgba(20, 35, 26, 0.14);
+}
+
 .request-choice-card span {
   font-size: 1.18rem;
   font-weight: 700;

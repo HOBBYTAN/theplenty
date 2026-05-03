@@ -8,19 +8,40 @@ export default function ContactInquiryPanel() {
   const [isOpen, setIsOpen] = useState(false);
   const [showCorporateForm, setShowCorporateForm] = useState(false);
   const panelRef = useRef<HTMLElement | null>(null);
+  const formRef = useRef<HTMLDivElement | null>(null);
+
+  const scrollToElement = (element: HTMLElement | null) => {
+    if (!element) {
+      return;
+    }
+
+    const isMobile = window.matchMedia("(max-width: 760px)").matches;
+    const offset = isMobile ? 86 : 18;
+    window.scrollTo({
+      top: window.scrollY + element.getBoundingClientRect().top - offset,
+      behavior: "smooth",
+    });
+  };
 
   useEffect(() => {
     const openPanel = () => {
       setIsOpen(true);
       setShowCorporateForm(false);
       window.setTimeout(() => {
-        panelRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" });
+        scrollToElement(panelRef.current);
       }, 60);
     };
 
     window.addEventListener("plenty:inquiry-open", openPanel);
     return () => window.removeEventListener("plenty:inquiry-open", openPanel);
   }, []);
+
+  const openCorporateForm = () => {
+    setShowCorporateForm(true);
+    window.setTimeout(() => {
+      scrollToElement(formRef.current);
+    }, 80);
+  };
 
   if (!isOpen) {
     return null;
@@ -39,9 +60,15 @@ export default function ContactInquiryPanel() {
       </div>
 
       <div className="request-choice-grid">
-        <button type="button" className="request-choice-card" onClick={() => setShowCorporateForm(true)}>
+        <button
+          type="button"
+          className={`request-choice-card${showCorporateForm ? " request-choice-card-active" : ""}`}
+          onClick={openCorporateForm}
+          aria-expanded={showCorporateForm}
+          aria-controls="corporate-inline-form"
+        >
           <span>기업문의</span>
-          <small>기업 행사, 컨퍼런스, 연회 상담 신청</small>
+          <small>기업 행사, 컨퍼런스, 연회 상담 입력</small>
         </button>
         <a className="request-choice-card request-choice-card-soft" href={siteConfig.links.kakao} target="_blank" rel="noreferrer noopener">
           <span>웨딩문의</span>
@@ -50,7 +77,7 @@ export default function ContactInquiryPanel() {
       </div>
 
       {showCorporateForm ? (
-        <div className="contact-form-embed">
+        <div id="corporate-inline-form" ref={formRef} className="contact-form-embed">
           <InquiryForm />
         </div>
       ) : (
