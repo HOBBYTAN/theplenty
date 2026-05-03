@@ -1,5 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
+import ContactInquiryPanel from "./ContactInquiryPanel";
+import InquiryTrigger from "./InquiryTrigger";
 import { blogItems, siteConfig, spaceSections } from "@/lib/site";
 
 const navItems = [
@@ -7,7 +9,7 @@ const navItems = [
   { label: "공간", href: "#spaces" },
   { label: "블로그", href: "#blog" },
   { label: "오시는길", href: "#location" },
-  { label: "문의", href: "/inquiry" },
+  { label: "문의", href: "#contact" },
 ];
 
 const aboutCards = [
@@ -58,10 +60,6 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <a href="#main-content" className="skip-link">
-        본문으로 바로가기
-      </a>
-
       <header className="top-nav">
         <div className="container nav-inner">
           <Link href="/" className="brand brand-text" aria-label="PLENTY CONVENTION 홈으로 이동">
@@ -74,12 +72,9 @@ export default function Home() {
               </a>
             ))}
           </nav>
-          <a
-            href="/inquiry"
-            className="cta-button"
-          >
+          <InquiryTrigger className="cta-button">
             문의하기
-          </a>
+          </InquiryTrigger>
         </div>
       </header>
 
@@ -119,12 +114,9 @@ export default function Home() {
             </div>
             <div className="hero-bottom">
               <div className="hero-action-row">
-                <a
-                  className="btn btn-solid"
-                  href="/inquiry"
-                >
+                <InquiryTrigger className="btn btn-solid">
                   문의하기
-                </a>
+                </InquiryTrigger>
                 <a className="btn btn-outline-light" href={siteConfig.links.blog} target="_blank" rel="noreferrer">
                   공식 블로그 보기
                 </a>
@@ -291,29 +283,29 @@ export default function Home() {
               <h2>예약 및 문의</h2>
               <p className="contact-copy">{siteConfig.contact.address}</p>
               <div className="contact-action-row">
-                <a
-                  className="btn btn-solid"
-                  href="/inquiry"
-                >
+                <InquiryTrigger className="btn btn-solid">
                   문의하기
-                </a>
+                </InquiryTrigger>
                 <a className="btn btn-outline" href="#location">
                   오시는길 보기
                 </a>
               </div>
             </article>
 
-            <div className="contact-list" aria-label="연락처 정보">
-              <span>대표번호 {siteConfig.contact.mainTel}</span>
-              <span>연회·기업 {siteConfig.contact.corporateTel}</span>
-              <span>웨딩 {siteConfig.contact.weddingTel}</span>
-              <a href={`mailto:${siteConfig.contact.email}`}>{siteConfig.contact.email}</a>
-              <a href={siteConfig.links.kakao} target="_blank" rel="noreferrer">
-                카카오 채널 상담
-              </a>
-              <a href={siteConfig.links.instagram} target="_blank" rel="noreferrer">
-                PLENTY WEDDING Instagram
-              </a>
+            <div className="contact-side">
+              <div className="contact-list" aria-label="연락처 정보">
+                <span>대표번호 {siteConfig.contact.mainTel}</span>
+                <span>연회·기업 {siteConfig.contact.corporateTel}</span>
+                <span>웨딩 {siteConfig.contact.weddingTel}</span>
+                <a href={`mailto:${siteConfig.contact.email}`}>{siteConfig.contact.email}</a>
+                <a href={siteConfig.links.kakao} target="_blank" rel="noreferrer">
+                  카카오 채널 상담
+                </a>
+                <a href={siteConfig.links.instagram} target="_blank" rel="noreferrer">
+                  PLENTY WEDDING Instagram
+                </a>
+              </div>
+              <ContactInquiryPanel />
             </div>
           </div>
         </section>
