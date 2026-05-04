@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import InquiryForm from "./inquiry/InquiryForm";
 import { siteConfig } from "@/lib/site";
 
@@ -10,37 +10,44 @@ export default function ContactInquiryPanel() {
   const panelRef = useRef<HTMLElement | null>(null);
   const formRef = useRef<HTMLDivElement | null>(null);
 
-  const scrollToElement = (element: HTMLElement | null) => {
+  const scrollToElement = useCallback((element: HTMLElement | null) => {
     if (!element) {
       return;
     }
 
     const isMobile = window.matchMedia("(max-width: 760px)").matches;
-    const offset = isMobile ? 86 : 18;
+    const offset = isMobile ? 86 : 88;
     window.scrollTo({
       top: window.scrollY + element.getBoundingClientRect().top - offset,
       behavior: "smooth",
     });
-  };
+  }, []);
 
   useEffect(() => {
     const openPanel = () => {
       setIsOpen(true);
       setShowCorporateForm(false);
-      window.setTimeout(() => {
-        scrollToElement(panelRef.current);
-      }, 60);
     };
 
     window.addEventListener("plenty:inquiry-open", openPanel);
     return () => window.removeEventListener("plenty:inquiry-open", openPanel);
-  }, []);
+  }, [scrollToElement]);
+
+  useEffect(() => {
+    if (!isOpen) {
+      return;
+    }
+
+    const frame = window.requestAnimationFrame(() => {
+      const isMobile = window.matchMedia("(max-width: 760px)").matches;
+      scrollToElement(showCorporateForm && isMobile ? formRef.current : panelRef.current);
+    });
+
+    return () => window.cancelAnimationFrame(frame);
+  }, [isOpen, scrollToElement, showCorporateForm]);
 
   const openCorporateForm = () => {
     setShowCorporateForm(true);
-    window.setTimeout(() => {
-      scrollToElement(formRef.current);
-    }, 80);
   };
 
   if (!isOpen) {
@@ -48,11 +55,20 @@ export default function ContactInquiryPanel() {
   }
 
   return (
-    <aside ref={panelRef} className="contact-inquiry-panel" aria-label="문의 신청 패널">
+    <aside
+      ref={panelRef}
+      className={`contact-inquiry-panel${showCorporateForm ? " contact-inquiry-panel-form" : ""}`}
+      aria-label="문의 신청 패널"
+    >
       <div className="contact-inquiry-head">
         <div>
           <p className="eyebrow">REQUEST</p>
-          <h3>상담 유형을 선택해 주세요.</h3>
+          <h3>{showCorporateForm ? "기업 행사 문의를 남겨주세요." : "어떤 상담이 필요하신가요?"}</h3>
+          <p>
+            {showCorporateForm
+              ? "필수 정보만 남겨주시면 담당자가 공간 구성과 가능 일정을 확인해 연락드립니다."
+              : "기업 행사는 바로 신청서를 작성하고, 웨딩은 카카오톡 채널에서 빠르게 상담합니다."}
+          </p>
         </div>
         <button type="button" className="panel-close-button" onClick={() => setIsOpen(false)} aria-label="신청 패널 닫기">
           닫기
@@ -81,9 +97,11 @@ export default function ContactInquiryPanel() {
           <InquiryForm />
         </div>
       ) : (
-        <p className="contact-request-note">
-          기업 행사는 신청서를 작성해 주시면 담당자가 확인 후 연락드립니다. 웨딩 상담은 카카오톡 채널로 바로 연결됩니다.
-        </p>
+        <div className="contact-request-note">
+          <span>대표번호 {siteConfig.contact.mainTel}</span>
+          <span>기업·연회 {siteConfig.contact.corporateTel}</span>
+          <span>웨딩 {siteConfig.contact.weddingTel}</span>
+        </div>
       )}
     </aside>
   );
