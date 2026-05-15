@@ -300,7 +300,7 @@ export default function Home() {
                   카카오 채널 상담
                 </a>
                 <a href={siteConfig.links.instagram} target="_blank" rel="noreferrer">
-                  PLENTY WEDDING Instagram
+                  PLENTY Wedding Instagram
                 </a>
               </div>
               <ContactInquiryPanel />

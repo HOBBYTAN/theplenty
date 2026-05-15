@@ -586,6 +586,12 @@ h1 {
   grid-template-columns: minmax(0, 1.45fr) minmax(0, 0.9fr) minmax(0, 0.9fr);
 }
 
+.venue-grid-wedding .venue-image,
+.venue-grid-wedding .venue-card-wide .venue-image {
+  height: clamp(300px, 18.6vw, 356px);
+  aspect-ratio: auto;
+}
+
 .venue-card {
   min-width: 0;
   display: flex;
@@ -1784,6 +1790,7 @@ h1 {
 
   .venue-card-wide .venue-image,
   .venue-image {
+    height: auto;
     aspect-ratio: 16 / 10.8;
   }
 

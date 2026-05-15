@@ -130,12 +130,12 @@ export const spaceSections: SpaceSection[] = [
   {
     id: "wedding",
     eyebrow: "SPACES",
-    title: "PLENTY WEDDING",
+    title: "PLENTY Wedding",
     features: [
       {
-        title: "PLENTY CONVENTION Hall A+B",
+        title: "CONVENTION Hall A+B",
         subtitle: "메인 웨딩홀",
-        description: "8m의 높은 천고와 가로 13m, 세로 4.5m 규모의 고해상도 미디어월을 통해 압도적인 스케일과 몰입감 있는 웨딩 연출을 완성합니다.",
+        description: "8m 천고와 13m x 4.5m 미디어월이 완성하는 웅장한 스케일의 프리미엄 웨딩홀",
         points: ["수용인원: 300명 + 서브홀 100명 (최대 400명)", "버진로드: 24m"],
         image: "/images/ref1/wedding-hall.webp",
         wide: true,
@@ -143,13 +143,13 @@ export const spaceSections: SpaceSection[] = [
       {
         title: "IVY Room",
         subtitle: "신부대기실",
-        description: "신부님만을 위한 1:1 플라워 커스터마이징이 적용된 공간으로, 메인홀 중계 시스템과 전용 화장실을 갖춰 예식 전까지 편안하고 프라이빗한 시간을 제공합니다.",
+        description: "1:1 플라워 커스터마이징, 메인홀 중계 및 전용 화장실을 갖춘 프라이빗 신부대기실",
         image: "/images/ref1/wedding-ivy-room.webp",
       },
       {
         title: "LEAF Room",
         subtitle: "VIP(혼주) 대기실",
-        description: "혼주님을 위한 전용 공간으로 넉넉한 동선과 쾌적한 환경을 제공하며 대기실 내 파우더룸과 전용 화장실을 갖추고 있습니다.",
+        description: "여유로운 동선과 파우더룸 및 전용 화장실을 갖춘 혼주 전용 대기실",
         image: "/images/ref1/wedding-leaf-room.webp",
       },
     ],
