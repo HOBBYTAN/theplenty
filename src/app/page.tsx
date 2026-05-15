@@ -86,7 +86,7 @@ export default function Home() {
             muted
             loop
             playsInline
-            preload="metadata"
+            preload="auto"
             poster={siteConfig.hero.poster}
           >
             <source src={siteConfig.hero.video} type="video/mp4" />
@@ -103,10 +103,9 @@ export default function Home() {
               priority
             />
             <div className="hero-copy">
-              <p className="hero-kicker">PLENTY CONVENTION</p>
               <h1>
-                <span className="hero-title-line">압도적인 스케일과 섬세한 운영으로 완성하는</span>
-                <span className="hero-title-line">프리미엄 컨벤션홀, PLENTY</span>
+                <span className="hero-title-line">웨딩 · 기업행사 · 컨슈머쇼를 위한</span>
+                <span className="hero-title-line">프리미엄 컨벤션</span>
               </h1>
               <p className="hero-lead">
                 서울 서초 반포대로, 중요한 순간의 품격을 공간과 운영으로 완성합니다.
@@ -117,8 +116,8 @@ export default function Home() {
                 <InquiryTrigger className="btn btn-solid">
                   문의하기
                 </InquiryTrigger>
-                <a className="btn btn-outline-light" href={siteConfig.links.blog} target="_blank" rel="noreferrer">
-                  공식 블로그 보기
+                <a className="btn btn-solid" href={siteConfig.links.blog} target="_blank" rel="noreferrer">
+                  공식 블로그
                 </a>
               </div>
               <p className="hero-location">{siteConfig.contact.shortAddress}</p>

@@ -40,8 +40,8 @@ export const metadata: Metadata = {
     description: siteConfig.description,
   },
   icons: {
-    icon: "/brand/logo-green.png",
-    apple: "/brand/logo-green.png",
+    icon: "/favicon.ico",
+    apple: "/apple-icon.png",
   },
   robots: {
     index: true,

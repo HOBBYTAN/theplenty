@@ -52,7 +52,7 @@ export const siteConfig = {
     white: "/brand/logo-white.webp",
   },
   hero: {
-    video: "/videos/plenty-hero-10s-540p.mp4",
+    video: "/videos/plenty-hero-full-1080p.mp4",
     poster: "/images/real/hero-wedding.webp",
   },
   contact: {
