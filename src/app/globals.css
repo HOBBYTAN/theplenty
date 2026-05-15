@@ -454,9 +454,9 @@ h1 {
 
 .about-card {
   min-height: 230px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
+  display: grid;
+  grid-template-rows: auto 1fr clamp(3rem, 4.2vw, 3.95rem) minmax(6.2em, auto);
+  align-items: stretch;
   border: 1px solid rgba(197, 212, 202, 0.9);
   border-radius: 28px;
   padding: 24px;
@@ -477,8 +477,8 @@ h1 {
 }
 
 .about-card span {
+  grid-row: 1;
   width: fit-content;
-  margin-bottom: auto;
   color: rgba(52, 70, 56, 0.48);
   font-family: var(--font-cormorant), "Cormorant Garamond", Georgia, serif;
   font-size: 2.5rem;
@@ -487,7 +487,13 @@ h1 {
 }
 
 .about-card h3 {
-  margin-top: 46px;
+  grid-row: 3;
+  align-self: start;
+  margin: 0;
+  min-height: 0;
+  height: clamp(3rem, 4.2vw, 3.95rem);
+  display: flex;
+  align-items: flex-start;
   color: var(--ink);
   font-family: var(--font-cormorant), "Cormorant Garamond", Georgia, serif;
   font-size: clamp(1.42rem, 2vw, 1.86rem);
@@ -497,7 +503,10 @@ h1 {
 }
 
 .about-card p {
+  grid-row: 4;
+  align-self: start;
   margin: 14px 0 0;
+  height: 6.2em;
   color: #526159;
   font-size: 0.95rem;
   font-weight: 400;
@@ -656,10 +665,14 @@ h1 {
 .venue-content h3 {
   font-size: clamp(1.35rem, 2vw, 1.88rem);
   line-height: 1.14;
+  min-height: 2.28em;
+  display: flex;
+  align-items: flex-end;
 }
 
 .venue-content > p:not(.space-subtitle) {
   margin: 20px 0 0;
+  min-height: 5.05em;
   color: #26342b;
   font-size: 1.01rem;
   font-weight: 400;
@@ -1730,7 +1743,19 @@ h1 {
 
   .about-card {
     min-height: 190px;
+    grid-template-rows: auto 24px auto auto;
     border-radius: 24px;
+  }
+
+  .about-card h3,
+  .venue-content h3,
+  .venue-content > p:not(.space-subtitle) {
+    min-height: 0;
+  }
+
+  .about-card h3,
+  .about-card p {
+    height: auto;
   }
 
   .about-copy h2 {
