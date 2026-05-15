@@ -18,7 +18,7 @@ const aboutCards = [
     description: "입장부터 리셉션까지 하나의 흐름으로 완성하는 프리미엄 웨딩",
   },
   {
-    title: "Corporate Event",
+    title: "EVENT",
     description: "브랜드 발표, 세미나, VIP 세션을 안정적으로 운영하는 기업행사",
   },
   {
@@ -130,10 +130,9 @@ export default function Home() {
             <article className="about-copy">
               <p className="eyebrow">ABOUT PLENTY</p>
               <p className="about-moment">For Every PLENTY Moment</p>
-              <h2>성과와 사랑이 머무는 시간을 위한 프리미엄 컨벤션</h2>
+              <h2>성과와 사랑이 머무는 프리미엄 컨벤션</h2>
               <p>
-                PLENTY는 지식과 성과, 그리고 사랑이 완성되는 순간을 담아 풍요로운 시간을 나누는 품격 있는 공간입니다.
-                서울 서초의 중심에서 웨딩, 기업행사, 컨퍼런스를 목적에 맞게 설계하고 안정적으로 운영합니다.
+                PLENTY는 웨딩, 기업행사, 컨퍼런스의 목적에 맞춰 공간과 운영을 설계합니다. 서울 서초 중심에서 중요한 순간을 품격 있게 완성합니다.
               </p>
             </article>
             <div className="about-card-grid" aria-label="PLENTY 주요 이용 목적">
