@@ -104,7 +104,7 @@ export default function Home() {
             />
             <div className="hero-copy">
               <h1>
-                <span className="hero-title-line">웨딩 · 기업행사 · 컨슈머쇼를 위한</span>
+                <span className="hero-title-line">웨딩 · 기업행사 · 학술대회를 위한</span>
                 <span className="hero-title-line">프리미엄 컨벤션</span>
               </h1>
               <p className="hero-lead">
